@@ -1,0 +1,63 @@
+@import 'styles';
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 50px 10%;
+  color: $mainColor;
+  font-size: 3rem;
+}
+
+.title > input {
+  font-size: 3rem;
+  width: 60%;
+  background: transparent;
+  font-family: $fontFamily;
+  color: $mainColor;
+  padding-left: 1rem;
+  transition: $transition;
+  border: none;
+  border-bottom: $mainBorder transparent;
+
+  &:hover, &:focus {
+    border-bottom: $mainBorder $mainColor;
+    outline: none;
+  }
+}
+
+.btn {
+  text-transform: uppercase;
+  font-size: 2rem;
+  outline: none;
+  border-radius: $borderRadius;
+  padding: 0.5rem 2.5rem;
+  cursor: pointer;
+  font-family: $fontFamily;
+  color: $mainColor;
+  border: $mainBorder $mainColor;
+  background-color: transparent;
+  transition: $transition;
+}
+
+.btn:hover {
+  border: $mainBorder transparent;
+  transition: $transition;
+  background-color: $mainColor;
+  color: $brightGreenColor;
+}
+
+.deleteIcon {
+  cursor: pointer;
+  transition: all .4s linear;
+  background: url("@icons/delete_icon.svg");
+  width: 80px;
+  height: 80px;
+
+  &:hover {
+    opacity: 0.6;
+    transition: $transition;
+    transform: rotate(15deg);
+  }
+}
+

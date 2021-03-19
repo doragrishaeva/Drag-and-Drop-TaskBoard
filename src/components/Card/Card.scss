@@ -1,0 +1,41 @@
+@import 'styles';
+
+
+.card {
+  width: 150px;
+  height: 150px;
+
+  &--yellow {
+    background-color: #FFFED4;
+  }
+
+  &--blue {
+    background-color: #9AE8ED;
+  }
+
+  &--pink {
+    background-color: #FFE1E0;
+  }
+
+  &--green {
+    background-color: #51A08A;
+  }
+
+  &--gray {
+    background-color: #EBE8E8;
+  }
+
+  &--red {
+    background-color: #FF8080;
+  }
+}
+
+.title {
+  display: inline-block;
+  font-size: 1rem;
+  margin: 10%;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-family: $fontFamily;
+  color: $mainColor
+}
