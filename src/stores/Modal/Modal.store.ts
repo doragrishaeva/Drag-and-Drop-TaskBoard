@@ -13,11 +13,6 @@ export class ModalStore {
   showModal = (value: boolean) => {
     this.show = value;
   };
-
-  @action
-  submitModal = () => {
-
-  };
 };
 
 export const modalStore = new ModalStore();

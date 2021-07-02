@@ -1,20 +1,22 @@
 import React from 'react';
 
+import { IColumn } from '@/components';
+
 import s from './Card.scss';
 
 export interface ICard {
-  color?: string;
-  title?: string;
   id?: number;
-  column?: number;
-  description?: string;
+  title?: string;
+  desc?: string;
   deadline?: string;
+  color?: string;
+  state?: number;
 }
 
 export const Card: React.FC<ICard> = ({ color, title }) => {
 
   const styles = [s.card, s[`card${color}`]];
-  console.log(color)
+
 
   return (
     <div className={styles.join(' ')}>
