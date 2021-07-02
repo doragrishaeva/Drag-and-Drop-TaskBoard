@@ -8,10 +8,11 @@ import s from './Header.scss';
 export const Header: React.FC = () => {
   const { showModal }: ModalStore = modalStore;
 
-  const [titleBoard, setTitleBoard] = React.useState('Task Board');
+  const [titleBoard, setTitleBoard] = React.useState(sessionStorage.getItem('title') || 'Task Board');
 
   const changeHandler = (event) => {
     setTitleBoard(event.target.value);
+    sessionStorage.setItem('title', event.target.value);
   };
 
   return (

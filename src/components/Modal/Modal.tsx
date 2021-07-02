@@ -11,12 +11,6 @@ export const Modal: React.FC = observer(() => {
   const { show, showModal }: ModalStore = modalStore;
   const { colors, color, setActiveColor, submitCard }: CardStore = cardStore;
 
-  const [ seen, setSeen ] = React.useState(show);
-
-  React.useEffect(() => {
-    setSeen(show);
-  }, [show]);
-
   const colorStyles = [s.color];
 
   const [titleTask, setTitleTask] = React.useState('');
@@ -36,14 +30,27 @@ export const Modal: React.FC = observer(() => {
     }
   };
 
-  const submitNewTask = (titleTask, descTask, deadline) => {
+  const submitNewTask = () => {
     submitCard(titleTask, descTask, deadline);
+    resetForm();
     showModal(false);
   }
 
+  const cancelHandler = () => {
+    resetForm();
+    showModal(false);
+  }
+
+  const resetForm = () => {
+    setTitleTask('');
+    setDescTask('');
+    setDeadline('');
+    setActiveColor(ColorLabels.Yellow);
+  };
+
   return (
     <>
-      {seen &&
+      {show &&
         <div className={s.wrapper}>
           <div className={s.container}>
 
@@ -82,8 +89,8 @@ export const Modal: React.FC = observer(() => {
             </div>
 
             <div className={s.controls}>
-              <button className={s.btn} onClick={() => submitNewTask(titleTask, descTask, deadline)}>Save</button>
-              <button className={s.btn} onClick={() => showModal(false)}>Cancel</button>
+              <button className={s.btn} onClick={submitNewTask}>Save</button>
+              <button className={s.btn} onClick={cancelHandler}>Cancel</button>
             </div>
 
             <div className={s.preview}>

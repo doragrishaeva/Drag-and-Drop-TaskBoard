@@ -1,6 +1,6 @@
 import { action, observable, makeObservable } from 'mobx';
 
-import { ICard } from '@/components';
+import { columns, ICard, IColumn } from '@/components';
 
 export enum ColorLabels {
   Yellow = 'Yellow',
@@ -20,7 +20,7 @@ export class CardStore {
   title: string = null;
 
   @observable
-  cards: ICard[];
+  cards: ICard[] = JSON.parse(sessionStorage.getItem('cards')) || [];
 
   colors = [
     {id: 1, color: ColorLabels.Yellow},
@@ -41,15 +41,29 @@ export class CardStore {
   }
 
   @action
-  submitCard = (title: string, desc: string, deadline: string) => {
-    console.log('Title:', title);
-    console.log('Description:', desc);
-    console.log('Deadline:', deadline);
+  submitCard = (title: string, desc: string, deadline: string ) => {
+    const card = {
+      id: this.cards.length + 1,
+      title: title,
+      desc: desc,
+      deadline: deadline,
+      color: this.color,
+      state: columns[0].id
+    } as ICard;
+
+    this.cards.push(card);
+    sessionStorage.setItem('cards', JSON.stringify(this.cards));
+    console.log(JSON.parse(sessionStorage.getItem('cards')));
   }
 
-  makeNewCard = () => {
-    // здесь создаем объект с новой таской по типу ICard и добавляем в массив с имеющимися тасками уже
+  @action
+  updateCardState = (draggableId: number, droppableId: number) => {
+    let card = this.cards.find(item => item.id === Number(draggableId));
+    card.state = Number(droppableId);
+
+    sessionStorage.setItem('cards', JSON.stringify(this.cards));
   }
+
 };
 
 export const cardStore = new CardStore();
